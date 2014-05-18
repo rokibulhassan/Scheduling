@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.0"
+ruby "2.0.0"
 gem 'rails', '4.1.0'
 gem 'mysql2',        group: :development
 gem 'pg',        group: :production
@@ -14,3 +14,4 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'therubyracer', :platforms => :ruby
 gem 'cupertino'
 gem 'rails_12factor', group: :production
+gem 'foundation-rails'
