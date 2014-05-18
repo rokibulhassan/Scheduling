@@ -20,11 +20,20 @@
   <section class="top-bar-section">
     <ul class="right">
       <li class="has-dropdown">
-        <a href="#">Sign Up</a>
-        <ul class="dropdown">
-          <li><a href="#">Register</a></li>
-          <li><a href="#">Sign Up With Twitter</a></li>
-        </ul>
+        <% if user_signed_in? %>
+            <a href="#"><%= current_user.email %></a>
+            <ul class="dropdown">
+              <li><%= link_to "My Profile", edit_user_registration_path(current_user) %></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+            </ul>
+        <% else %>
+            <a href="#">Sign In/Sign Up</a>
+            <ul class="dropdown">
+              <li><%= link_to "Log In", user_session_path %></li>
+              <li><%= link_to "Register", new_user_registration_path %></li>
+              <li><a href="#">Sign Up With Twitter</a></li>
+            </ul>
+        <% end %>
       </li>
     </ul>
   </section>
