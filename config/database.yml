@@ -2,7 +2,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: scheduling_development
+  database: scheduling2_development
   pool: 5
   username: root
   password: root
