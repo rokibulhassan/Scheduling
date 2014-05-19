@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140518155934) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "devise", force: true do |t|
     t.string   "name"
     t.string   "username"
     t.string   "image"
