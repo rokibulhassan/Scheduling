@@ -27,11 +27,11 @@ class User < ActiveRecord::Base
         user.password = Devise.friendly_token[0, 10]
         user.name = auth.info.name
         user.email = auth.info.email
-        user.remote_avatar_url = auth.info.image.to_s.gsub("_normal", "")
         auth.provider == "twitter" ? user.save(:validate => false) : user.save
       end
-      authorization.username = auth.info.nickname
       authorization.user_id = user.id
+      authorization.username = auth.info.nickname
+      user.remote_avatar_url = auth.info.image.to_s.gsub("_normal", "")
       authorization.save
     end
     authorization.user
