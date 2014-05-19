@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy, :tweet]
 
   # GET /schedules
   # GET /schedules.json
@@ -58,7 +58,17 @@ class SchedulesController < ApplicationController
     rescue Exception => ex
       flash[:error] = ex.message
     end
-    redirect_to :action => 'index'
+    redirect_to schedules_path
+  end
+
+  def tweet
+    begin
+      Schedule.tweet(@schedule.twitter_id, @schedule.tweet, @schedule.image_url)
+      flash[:notice] = 'Tweeted on twitter successfully.'
+    rescue Exception => ex
+      flash[:error] = ex.message
+    end
+    redirect_to schedules_path
   end
 
   # DELETE /schedules/1
