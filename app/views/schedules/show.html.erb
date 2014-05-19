@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tweet at:</strong>
+  <%= @schedule.tweet_at %>
+</p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @schedule.twitter_id %>
+</p>
+
+<p>
+  <strong>Tweet:</strong>
+  <%= @schedule.tweet %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @schedule.image_url %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Back', schedules_path %>

@@ -19,6 +19,7 @@
 
   <section class="top-bar-section">
     <ul class="right">
+      <li><%= link_to "Schedule", schedules_path %></li>
       <li class="has-dropdown">
         <% if user_signed_in? %>
             <a href="#" data-dropdown="dropdown1"><%= current_user.name %></a>

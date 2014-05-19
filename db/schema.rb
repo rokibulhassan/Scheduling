@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518155934) do
+ActiveRecord::Schema.define(version: 20140519161631) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -24,7 +24,16 @@ ActiveRecord::Schema.define(version: 20140518155934) do
     t.datetime "updated_at"
   end
 
-  create_table "devise", force: true do |t|
+  create_table "schedules", force: true do |t|
+    t.datetime "tweet_at"
+    t.string   "twitter_id"
+    t.text     "tweet"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "username"
     t.string   "image"

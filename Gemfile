@@ -15,6 +15,7 @@ gem 'therubyracer', :platforms => :ruby
 gem 'cupertino'
 gem 'rails_12factor', group: :production
 gem 'foundation-rails'
+gem 'foundation-datetimepicker-rails'
 gem 'devise'
 gem 'carrierwave'
 gem 'twitter'
