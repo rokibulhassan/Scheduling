@@ -22,17 +22,17 @@
       <li><%= link_to "Schedule", schedules_path %></li>
       <li class="has-dropdown">
         <% if user_signed_in? %>
-            <a href="#" data-dropdown="dropdown1"><%= current_user.name %></a>
+            <a href="#" data-dropdown="dropdown1"> <%= "#{image_tag current_user.remote_avatar_url, :size => "40x40"} #{current_user.name }".html_safe %></a>
             <ul id="dropdown1" class="f-dropdown" data-dropdown-content>
-              <li><%= link_to "My Profile", edit_user_registration_path(current_user) %></li>
-              <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+              <li class="row"><%= link_to "My Profile", edit_user_registration_path(current_user) %></li>
+              <li class="row"><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
             </ul>
         <% else %>
             <a href="#" data-dropdown="dropdown2">Sign In/Sign Up</a>
             <ul id="dropdown2" class="f-dropdown" data-dropdown-content>
-              <li><%= link_to "Log In", user_session_path %></li>
-              <li><%= link_to "Register", new_user_registration_path %></li>
-              <li><%= link_to "Via Twitter", omniauth_authorize_path(:user, :twitter) %></li>
+              <li class="row"><%= link_to "Log In", user_session_path %></li>
+              <li class="row"><%= link_to "Register", new_user_registration_path %></li>
+              <li class="row"><%= link_to "Via Twitter", omniauth_authorize_path(:user, :twitter) %></li>
             </ul>
         <% end %>
       </li>
