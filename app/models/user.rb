@@ -36,4 +36,20 @@ class User < ActiveRecord::Base
     end
     authorization.user
   end
+
+  def self.auth(username)
+    Authorization.where(provider: "twitter", username: username).last || nil
+  end
+
+  def self.client(username)
+    auth = User.auth(username)
+    return nil if auth.nil?
+
+    Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['TWITTER_KEY']
+      config.consumer_secret = ENV['TWITTER_SECRET']
+      config.access_token = auth.token
+      config.access_token_secret = auth.secret
+    end
+  end
 end
