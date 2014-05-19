@@ -51,6 +51,16 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def upload_schedules
+    begin
+      Schedule.import(params[:file])
+      flash[:notice] = 'Successfuly uploaded schedules.'
+    rescue Exception => ex
+      flash[:error] = ex.message
+    end
+    redirect_to :action => 'index'
+  end
+
   # DELETE /schedules/1
   # DELETE /schedules/1.json
   def destroy
@@ -62,13 +72,13 @@ class SchedulesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_schedule
-      @schedule = Schedule.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def schedule_params
-      params.require(:schedule).permit(:tweet_at, :twitter_id, :tweet, :image_url)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def schedule_params
+    params.require(:schedule).permit(:tweet_at, :twitter_id, :tweet, :image_url)
+  end
 end

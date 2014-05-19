@@ -1,6 +1,20 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1>Listing schedules</h1>
+    <h1>Manage Schedules</h1>
+
+    <%= form_tag '/schedules/upload_schedules', multipart: true do %>
+        <h2><small>Upload Schedules</small></h2>
+        <div class="row collapse">
+          <div class="small-8 columns">
+            <div class="small-5 columns">
+              <%= file_field_tag 'file', :accept => 'text/csv', :multiple => false %>
+            </div>
+            <div class="small-2 columns">
+              <%= submit_tag "Submit", :class => "button tiny" %>
+            </div>
+          </div>
+        </div>
+    <% end %>
 
     <table>
       <thead>
@@ -28,7 +42,7 @@
       </tbody>
     </table>
     <br>
-    <%= link_to 'New Schedule', new_schedule_path %>
+    <%= link_to 'New Schedule', new_schedule_path, :class => "button tiny" %>
   </div>
 </div>
 
