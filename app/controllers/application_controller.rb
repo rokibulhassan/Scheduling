@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :update_sanitized_params, if: :devise_controller?
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :username, :image, :location, :email, :password, :password_confirmation)}
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :username, :image, :remote_avatar_url, :location, :email, :password, :password_confirmation) }
   end
 end
