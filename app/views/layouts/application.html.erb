@@ -19,7 +19,9 @@
 
   <section class="top-bar-section">
     <ul class="right">
-      <li><%= link_to "Schedule", schedules_path %></li>
+      <% if user_signed_in? %>
+          <li><%= link_to "Schedule", schedules_path %></li>
+      <% end %>
       <li class="has-dropdown">
         <% if user_signed_in? %>
             <a href="#" data-dropdown="dropdown1"> <%= "#{image_tag current_user.remote_avatar_url, :size => "40x40"} #{current_user.name }".html_safe %></a>

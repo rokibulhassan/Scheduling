@@ -1,10 +1,11 @@
 class SchedulesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_schedule, only: [:show, :edit, :update, :destroy, :tweet]
 
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    @schedules = current_user.schedules.not_tweet rescue []
   end
 
   # GET /schedules/1
@@ -25,6 +26,7 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
+    @schedule.user = current_user
 
     respond_to do |format|
       if @schedule.save
@@ -53,7 +55,7 @@ class SchedulesController < ApplicationController
 
   def upload_schedules
     begin
-      Schedule.import(params[:file])
+      Schedule.import(params[:file], current_user)
       flash[:notice] = 'Successfuly uploaded schedules.'
     rescue Exception => ex
       flash[:error] = ex.message
@@ -64,6 +66,7 @@ class SchedulesController < ApplicationController
   def tweet
     begin
       Schedule.tweet(@schedule.twitter_id, @schedule.tweet, @schedule.image_url)
+      @schedule.update_attributes!(status: true)
       flash[:notice] = 'Tweeted on twitter successfully.'
     rescue Exception => ex
       flash[:error] = ex.message
@@ -89,6 +92,6 @@ class SchedulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def schedule_params
-    params.require(:schedule).permit(:tweet_at, :twitter_id, :tweet, :image_url)
+    params.require(:schedule).permit(:tweet_at, :twitter_id, :tweet, :image_url, :user_id)
   end
 end

@@ -1,4 +1,52 @@
-<h2>Hello World</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Twitters</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Twitter ID</th>
+        <th>Screen Name</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @twitter_profiles.each do |tp| %>
+          <tr>
+            <td><%= tp.uid %></td>
+            <td><%= tp.username %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to "Add More", omniauth_authorize_path(:user, :twitter), :class => "button tiny" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Tweets</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Tweet at</th>
+        <th>Twitter</th>
+        <th>Tweet</th>
+        <th>Image</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @posted_tweets.each do |pt| %>
+          <tr>
+            <td><%= pt.tweet_at %></td>
+            <td><%= pt.twitter_id %></td>
+            <td><%= pt.tweet %></td>
+            <td><%= image_tag pt.image_url, :size => "40x40" %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
