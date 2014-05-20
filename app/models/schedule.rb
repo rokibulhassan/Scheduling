@@ -21,7 +21,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def self.operation
-    Schedule.up_coming.each do |schedule|
+    Schedule.all.each do |schedule|
       Schedule.tweet(schedule.twitter_id, schedule.tweet, schedule.image_url)
     end
   end
