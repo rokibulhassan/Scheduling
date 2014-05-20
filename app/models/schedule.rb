@@ -1,5 +1,8 @@
 class Schedule < ActiveRecord::Base
 
+  #scope :up_coming, -> { where('tweet_at >= ? AND tweet_at <=?', Time.now, Time.now+10.minutes) }
+  scope :up_coming, -> { where(:tweet_at => 5.minutes.ago..Time.now+5.minutes) }
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       Schedule.create!(row.to_hash)
@@ -17,8 +20,8 @@ class Schedule < ActiveRecord::Base
     end
   end
 
-  def self.operation(schedules)
-    schedules.all.each do |schedule|
+  def self.operation
+    Schedule.up_coming.each do |schedule|
       Schedule.tweet(schedule.twitter_id, schedule.tweet, schedule.image_url)
     end
   end

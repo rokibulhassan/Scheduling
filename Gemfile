@@ -28,3 +28,4 @@ gem 'omniauth-linkedin'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'rmagick'
+gem 'whenever', :require => false
