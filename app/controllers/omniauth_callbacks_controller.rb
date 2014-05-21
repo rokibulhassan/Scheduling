@@ -6,7 +6,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     p env["omniauth.auth"]
     user = User.from_omniauth(env["omniauth.auth"], current_user)
     if user.persisted?
-      flash[:notice] = "You are in..!!! Go to edit profile to see the status for the accounts"
+      flash[:notice] = "You are Successfully logged in!"
       if current_user.present?
         redirect_to root_url
       else
