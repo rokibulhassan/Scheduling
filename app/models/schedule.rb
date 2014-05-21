@@ -5,8 +5,16 @@ class Schedule < ActiveRecord::Base
   scope :posted_tweets, -> { where(:status => true) }
   scope :not_tweet, -> { where(:status => false) }
 
+  def self.validate_headers(row)
+    regex = "/^tweet_at\,screen_name\,twitter_id\,tweet\,image_url$/"
+    row.headers.each do |hdr|
+      raise "Invalid header #{hdr}" if regex.match(hdr).nil?
+    end
+  end
+
   def self.import(file, current_user)
     CSV.foreach(file.path, headers: true) do |row|
+      Schedule.validate_headers(row)
       schedule=Schedule.new(row.to_hash)
       schedule.user=current_user
       schedule.save!
@@ -26,7 +34,7 @@ class Schedule < ActiveRecord::Base
 
   def self.operation
     Schedule.not_tweet.up_coming.each do |schedule|
-      Schedule.tweet(schedule.twitter_id, schedule.tweet, schedule.image_url)
+      Schedule.tweet(schedule.screen_name, schedule.tweet, schedule.image_url)
       schedule.update_attributes!(status: true)
     end
   end

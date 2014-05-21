@@ -22,7 +22,7 @@
       <thead>
       <tr>
         <th>Tweet at</th>
-        <th>Twitter</th>
+        <th>Screen Name</th>
         <th>Tweet</th>
         <th>Image</th>
         <th colspan="4"></th>
@@ -33,7 +33,7 @@
       <% @schedules.each do |schedule| %>
           <tr>
             <td><%= schedule.tweet_at %></td>
-            <td><%= schedule.twitter_id %></td>
+            <td><%= schedule.screen_name %></td>
             <td><%= schedule.tweet %></td>
             <td><%= image_tag schedule.image_url, :size => "40x40" %></td>
             <td><%= link_to 'Show', schedule %></td>

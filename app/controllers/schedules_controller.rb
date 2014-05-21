@@ -56,7 +56,7 @@ class SchedulesController < ApplicationController
   def upload_schedules
     begin
       Schedule.import(params[:file], current_user)
-      flash[:notice] = 'Successfuly uploaded schedules.'
+      flash[:notice] = 'Successfully uploaded schedules.'
     rescue Exception => ex
       flash[:error] = ex.message
     end
@@ -65,7 +65,7 @@ class SchedulesController < ApplicationController
 
   def tweet
     begin
-      Schedule.tweet(@schedule.twitter_id, @schedule.tweet, @schedule.image_url)
+      Schedule.tweet(@schedule.screen_name, @schedule.tweet, @schedule.image_url)
       @schedule.update_attributes!(status: true)
       flash[:notice] = 'Tweeted on twitter successfully.'
     rescue Exception => ex
@@ -92,6 +92,6 @@ class SchedulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def schedule_params
-    params.require(:schedule).permit(:tweet_at, :twitter_id, :tweet, :image_url, :user_id)
+    params.require(:schedule).permit(:tweet_at, :twitter_id, :screen_name, :tweet, :image_url, :user_id)
   end
 end

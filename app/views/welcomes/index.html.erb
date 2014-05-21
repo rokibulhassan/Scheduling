@@ -5,7 +5,7 @@
       <thead>
       <tr>
         <th>Tweet at</th>
-        <th>Twitter</th>
+        <th>Screen Name</th>
         <th>Tweet</th>
         <th>Image</th>
       </tr>
@@ -15,7 +15,7 @@
       <% @posted_tweets.each do |pt| %>
           <tr>
             <td><%= pt.tweet_at %></td>
-            <td><%= pt.twitter_id %></td>
+            <td><%= pt.screen_name %></td>
             <td><%= pt.tweet %></td>
             <td><%= image_tag pt.image_url, :size => "40x40" %></td>
           </tr>
