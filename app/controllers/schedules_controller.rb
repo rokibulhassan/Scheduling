@@ -54,12 +54,12 @@ class SchedulesController < ApplicationController
   end
 
   def upload_schedules
-    begin
+    #begin
       Schedule.import(params[:file], current_user)
       flash[:notice] = 'Successfully uploaded schedules.'
-    rescue Exception => ex
-      flash[:error] = ex.message
-    end
+    #rescue Exception => ex
+    #  flash[:error] = ex.message
+    #end
     redirect_to schedules_path
   end
 
