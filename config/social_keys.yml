@@ -18,8 +18,8 @@ production:
   facebook_key: "151893388331106"
   facebook_secret: "09e76dd8d581bc5de629d411ad3c6c94"
 
-  twitter_key: "N49geNTQyeaCBh74crTqdA"
-  twitter_secret: "ppoevsD4kyHqxvh3LN8bvuCdtpZvOm0mb7u1MNqI"
+  twitter_key: "CfhflumOw8AaDSoW2uvwl1Wzn"
+  twitter_secret: "10v0r9JmcH76twkwQOnat1lJnaLJADydb2ytPJES7SEBxiKOo4"
 
   github_key: "YOUR_KEY"
   github_secret: "YOUR_SECRET"

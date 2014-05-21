@@ -11,5 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'welcome#index'
+  resources :welcomes do
+    collection do
+      get 'profile'
+    end
+  end
+
+  root 'welcomes#index'
 end

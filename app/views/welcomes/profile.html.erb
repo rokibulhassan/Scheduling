@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Twitters</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Twitter ID</th>
+        <th>Screen Name</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @twitter_profiles.each do |tp| %>
+          <tr>
+            <td><%= tp.uid %></td>
+            <td><%= tp.username %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to "Add More", omniauth_authorize_path(:user, :twitter), :class => "button tiny" %>
+    <%= link_to "Edit Profile", edit_user_registration_path(current_user), :class => "button tiny" %>
+  </div>
+</div>
