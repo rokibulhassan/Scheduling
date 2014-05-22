@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 2.minutes do
-  runner "Schedule.operation", :output => 'cron.log'
+every 10.minutes do
+  runner "Schedule.operation", :output => 'log/cron.log'
 end

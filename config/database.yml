@@ -7,7 +7,6 @@ development:
   username: root
   password: root
 
-
 production:
   adapter: postgresql
   encoding: unicode

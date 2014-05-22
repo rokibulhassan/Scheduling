@@ -33,6 +33,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def self.operation
+    puts "Executing at #{Time.now}"
     Schedule.not_tweet.up_coming.each do |schedule|
       Schedule.tweet(schedule.screen_name, schedule.tweet, schedule.image_url)
       schedule.update_attributes!(status: true)

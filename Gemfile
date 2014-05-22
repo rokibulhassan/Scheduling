@@ -29,3 +29,4 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'rmagick'
 gem 'whenever', :require => false
+gem 'awesome_print'
