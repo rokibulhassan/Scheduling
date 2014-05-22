@@ -21,21 +21,21 @@ class Schedule < ActiveRecord::Base
     end
   end
 
-  def self.tweet(username, tweet, image_url)
-    client = User.client(username)
-    if client.present?
-      if image_url.empty?
-        client.update(tweet)
-      else
-        client.update_with_media(tweet, open(image_url))
-      end
+  def self.tweet(client, tweet, image_url)
+    if image_url.empty?
+      client.update(tweet)
+    else
+      client.update_with_media(tweet, open(image_url))
     end
   end
 
   def self.operation
     Schedule.not_tweet.up_coming.each do |schedule|
-      Schedule.tweet(schedule.screen_name, schedule.tweet, schedule.image_url)
-      schedule.update_attributes!(status: true)
+      client = User.client(schedule.screen_name)
+      if client.present?
+        Schedule.tweet(client, schedule.tweet, schedule.image_url)
+        schedule.update_attributes!(status: true)
+      end
     end
   end
 end
