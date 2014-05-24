@@ -65,9 +65,15 @@ class SchedulesController < ApplicationController
 
   def tweet
     begin
-      Schedule.tweet(@schedule.screen_name, @schedule.tweet, @schedule.image_url)
-      @schedule.update_attributes!(status: true)
-      flash[:notice] = 'Tweeted on twitter successfully.'
+      client = User.client(@schedule.screen_name)
+      if client.present?
+        Schedule.tweet(client, @schedule.tweet, @schedule.image_url)
+        @schedule.update_attributes!(status: true)
+        flash[:notice] = 'Tweeted on twitter successfully.'
+      else
+        @schedule.update_attributes!(error_msg: "#{@schedule.screen_name} is not registered with this system.")
+        flash[:error] = "#{@schedule.screen_name} is not registered with this system."
+      end
     rescue Exception => ex
       flash[:error] = ex.message
     end
@@ -92,6 +98,6 @@ class SchedulesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def schedule_params
-    params.require(:schedule).permit(:tweet_at, :twitter_id, :screen_name, :tweet, :image_url, :user_id)
+    params.require(:schedule).permit(:tweet_at, :twitter_id, :screen_name, :tweet, :image_url, :user_id, :error_msg)
   end
 end

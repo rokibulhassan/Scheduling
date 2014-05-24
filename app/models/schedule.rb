@@ -35,6 +35,8 @@ class Schedule < ActiveRecord::Base
       if client.present?
         Schedule.tweet(client, schedule.tweet, schedule.image_url)
         schedule.update_attributes!(status: true)
+      else
+        schedule.update_attributes!(error_msg: "#{schedule.screen_name} is not registered with this system.")
       end
     end
   end

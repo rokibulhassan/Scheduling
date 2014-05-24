@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521194015) do
+ActiveRecord::Schema.define(version: 20140524170219) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140521194015) do
     t.integer  "user_id"
     t.boolean  "status",      default: false
     t.string   "screen_name"
+    t.string   "error_msg"
   end
 
   create_table "users", force: true do |t|
